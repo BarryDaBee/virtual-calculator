@@ -6,15 +6,20 @@ class NumberButton extends StatelessWidget {
     fontWeight: FontWeight.bold,
     color: Colors.grey.shade700,
   );
+  final VoidCallback onLongPress;
   final String number;
   final Color colour;
-  NumberButton({this.number, this.colour});
+  final Function(String) onPressed;
+  NumberButton({this.number, this.colour, this.onPressed, this.onLongPress});
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(4),
       child: GestureDetector(
-        onTap: () {},
+        onLongPress: onLongPress,
+        onTap: () {
+          onPressed(number);
+        },
         child: Card(
           color: Colors.transparent,
           elevation: 10,
